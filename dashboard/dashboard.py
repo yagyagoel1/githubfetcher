@@ -38,6 +38,15 @@ def main():
     total_entries = fetch_data('SELECT COUNT(*) AS count FROM repositories')['count'][0]
     st.write(total_entries)
 
+    #top 10 entries by size 
+    st.header('Top 10 Entries by Size')
+    top_10_entries = fetch_data('SELECT name, size FROM repositories ORDER BY size DESC LIMIT 10')
+    st.bar_chart(top_10_entries.set_index('name'))
+
+    st.header('Entries Over Time')
+    entries_over_time = fetch_data('SELECT DATE(created_at) AS date, COUNT(*) AS count FROM repositories GROUP BY DATE(created_at)')
+    st.scatter_chart(entries_over_time.set_index('date'))
+
     #discription of entries by language
     st.header('Distribution of Entries by Language')
     language_distribution = fetch_data('SELECT language, COUNT(*) AS count FROM repositories GROUP BY language')
@@ -48,9 +57,11 @@ def main():
     top_10_entries = fetch_data('SELECT * FROM repositories ORDER BY updated_at DESC LIMIT 10')
     st.write(top_10_entries)
 
+
+
     #search
     st.header('Search')
-    search_by = st.selectbox('Search by', ['Name', 'Full Name',"Description","Language"])
+    search_by = st.selectbox('Search by', ['ID','Name', 'Full Name',"Description","Language"])
     search_query = st.text_input(f'Enter {search_by}')
     if st.button('Search'):
         query = f"SELECT * FROM repositories WHERE {search_by.lower().replace(' ', '_')} LIKE ?"
