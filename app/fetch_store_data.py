@@ -48,7 +48,8 @@ def store_repository_data(data):
                 description=repo['description'],
                 language=repo['language'],
                 created_at=repo['created_at'],
-                updated_at=repo['updated_at']
+                updated_at=repo['updated_at'],
+                size=repo['size']
             )
             #adding the repo to the table
             session.add(repo_entry)

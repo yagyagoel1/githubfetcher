@@ -18,6 +18,8 @@ class Repo(Base):
     language = Column(String, index=True)
     created_at = Column(DateTime)
     updated_at = Column(DateTime)
+    size = Column(Integer)
+
 
 
 #creating the table in the database if not exists
