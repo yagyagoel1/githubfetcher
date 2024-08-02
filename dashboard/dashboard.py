@@ -43,7 +43,8 @@ def main():
     top_10_entries = fetch_data('SELECT name, size FROM repositories ORDER BY size DESC LIMIT 10')
     st.bar_chart(top_10_entries.set_index('name'))
 
-    st.header('Entries Over Time')
+    #repos created over time
+    st.header('Repos Created Over Time')
     entries_over_time = fetch_data('SELECT DATE(created_at) AS date, COUNT(*) AS count FROM repositories GROUP BY DATE(created_at)')
     st.scatter_chart(entries_over_time.set_index('date'))
 
