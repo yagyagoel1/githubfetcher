@@ -1,0 +1,14 @@
+Package            Version
+------------------ --------
+certifi            2024.7.4
+charset-normalizer 3.3.2
+greenlet           3.0.3
+idna               3.7
+load-dotenv        0.1.0
+pip                22.0.2
+python-dotenv      1.0.1
+requests           2.32.3
+setuptools         59.6.0
+SQLAlchemy         2.0.31
+typing_extensions  4.12.2
+urllib3            2.2.2
